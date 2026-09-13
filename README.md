@@ -1,10 +1,65 @@
-# AI-powered-Gesture-Based-Mouse
-AI-powered system to control your computer using hand gestures.
-<p>The AI-Powered Mouse is an intelligent system that allows users to control their computer using hand gestures detected through a webcam. It leverages computer vision and machine learning techniques to provide a hands-free interaction experience. The system primarily uses OpenCV for video capture, MediaPipe for real-time hand tracking, and PyAutoGUI for executing mouse control actions such as movement, clicking, and scrolling.
+# 🖱️ AI-Powered Gesture-Based Mouse
 
-When the program starts, it initializes the webcam and sets up MediaPipe’s hand tracking module to detect key landmarks on the hand. Once a hand is detected, the system identifies the position of the fingers and determines whether each finger is raised or lowered. Based on these gestures, specific mouse actions are triggered. For example, lowering the pinky finger locks or unlocks the cursor, a single index finger tap performs a left click, while the middle finger triggers a right click. Combining multiple fingers enables scrolling up or down.
+An AI-powered computer vision system that allows users to control their computer mouse using **hand gestures** detected through a webcam.
 
-To ensure smooth and stable cursor movement, an Exponential Moving Average (EMA) filter is applied to the fingertip coordinates, reducing jitter caused by small hand tremors. A cooldown mechanism prevents accidental multiple clicks by enforcing a short delay between consecutive actions. Additionally, when the hand leaves the camera’s view, the system pauses control to avoid unwanted movements.
+The project combines **OpenCV**, **MediaPipe**, and **PyAutoGUI** to provide real-time, hands-free mouse interaction. It detects hand landmarks, interprets finger gestures, and converts them into mouse actions such as cursor movement, left click, right click, and scrolling.
 
-Overall, this workflow demonstrates how AI and computer vision can be combined to create an efficient and intuitive gesture-based human-computer interaction system. It eliminates the need for traditional hardware like a mouse or touchpad, showcasing the potential of AI-powered automation and gesture recognition in enhancing user experience and accessibility.
-</p>
+---
+
+## 🚀 Features
+
+- 🖐️ Real-time hand gesture detection
+- 🎯 AI-based hand landmark tracking using MediaPipe
+- 🖱️ Gesture-controlled cursor movement
+- 👆 Left-click gesture
+- 🖕 Right-click gesture
+- 📜 Scroll up and down using multiple fingers
+- 🔒 Cursor lock/unlock gesture
+- 🎯 Smooth cursor movement using Exponential Moving Average (EMA)
+- ⏱️ Click/action cooldown to prevent accidental repeated actions
+- 📷 Real-time webcam processing
+- 🛑 Automatically pauses mouse control when the hand leaves the camera view
+- 💻 Hands-free human-computer interaction
+
+---
+
+## 🧠 Technologies Used
+
+| Technology | Purpose |
+|------------|---------|
+| **Python** | Core programming language |
+| **OpenCV** | Webcam capture and image processing |
+| **MediaPipe** | Real-time hand tracking and landmark detection |
+| **PyAutoGUI** | Computer mouse control |
+| **NumPy** | Numerical processing used by the computer vision stack |
+
+---
+
+## ✋ Gesture Controls
+
+The system recognizes different finger configurations and maps them to mouse operations.
+
+| Gesture | Action |
+|---------|--------|
+| ☝️ Index Finger | Move Cursor |
+| 🤏 Index Finger Down | Left Click |
+| 🖕 Middle Finger Down | Right Click |
+| ✌️ Index + Middle Down | Scroll Down |
+| 🤟 Index + Middle + Ring Down | Scroll Up |
+| 🤙 Pinky Down | Lock / Unlock Cursor |
+
+### Cursor Movement
+
+The cursor follows the position of the **index and middle fingertips**.
+
+Their coordinates are averaged to create a more stable reference point:
+
+```text
+Cursor Position
+      ↑
+      |
+Index + Middle
+  Fingertips
+      |
+      ↓
+Screen Coordinates
